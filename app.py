@@ -10,7 +10,7 @@ st.markdown(
 <style>
   /* Soft pastel background */
 body {
-    background: linear-gradient(180deg, #f3f1f8 0%, #eef3fb 100%);
+    background: linear-gradient(180deg, #f3f1f8 0%, #F7F6FB 100%);
 }
 
 /* Container spacing */
@@ -227,6 +227,7 @@ with st.expander("About this project"):
     st.write(
         "This tool is for personal insight only. It is not medical advice."
     )
+
 
 
 
