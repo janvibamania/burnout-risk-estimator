@@ -38,7 +38,7 @@ st.markdown(
 
 # --- HEADER ---
 st.title("🧠 Burnout Risk Estimator")
-st.markdown("**By Janvi Bamania**  \nMini Independent Behavioural Modelling Project")
+st.markdown("**By Janvi Bamania**  \nMini Independent Behavioural Modelling Project (2026)")
 st.caption("Behavioural risk modelling prototype (non-clinical).")
 
 st.divider()
@@ -175,4 +175,5 @@ with st.expander("About this project"):
     st.write(
         "This tool is for personal insight only. It is not medical advice."
     )
+
 
