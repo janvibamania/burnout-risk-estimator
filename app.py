@@ -8,42 +8,102 @@ st.set_page_config(page_title="Burnout Risk Estimator", page_icon="🧠", layout
 st.markdown("""
 <style>
 
-/* Lavender background */
+/* --- Background --- */
 .stApp {
-    background: linear-gradient(180deg, #F4F1FF 0%, #ECE8FF 100%);
+  background: linear-gradient(180deg, #F4F1FF 0%, #ECE8FF 100%);
 }
 
-/* Navy headings */
-h1, h2, h3 {
-    color: #1E2A47 !important;
-    font-weight: 700 !important;
+/* --- Title smaller + try keep on one line --- */
+h1 {
+  color: #1E2A47 !important;
+  font-weight: 800 !important;
+  font-size: 2.05rem !important;
+  line-height: 1.08 !important;
+  white-space: nowrap !important;      /* try keep one line */
+}
+@media (max-width: 430px) {
+  h1 { 
+    font-size: 1.65rem !important;
+    white-space: normal !important;    /* allow wrap if truly needed */
+  }
 }
 
-/* Pink ACTIVE slider track only */
-.stSlider div[data-baseweb="slider"] div[role="presentation"]:first-child {
-    background: #FF4FA3 !important;
+/* --- Headings --- */
+h2, h3 {
+  color: #1E2A47 !important;
+  font-weight: 750 !important;
 }
 
-/* Pink slider thumb */
-.stSlider div[role="slider"] {
-    background-color: #FF4FA3 !important;
-    border: 2px solid white !important;
+/* --- Body text --- */
+p, label, span {
+  color: #3E4463 !important;
 }
 
-/* Remove metric white boxes */
+/* --- Subtle “card” look for expander header --- */
+div[data-testid="stExpander"] > details > summary {
+  background: rgba(30, 42, 71, 0.06) !important;  /* slightly darker than bg */
+  border-radius: 14px !important;
+  padding: 10px 12px !important;
+  border: 1px solid rgba(30, 42, 71, 0.08) !important;
+}
+
+/* --- Button slightly darker than background --- */
+button[kind="primary"], button[kind="secondary"], .stButton>button {
+  background: rgba(30, 42, 71, 0.07) !important;
+  border: 1px solid rgba(30, 42, 71, 0.10) !important;
+  color: #1E2A47 !important;
+  border-radius: 12px !important;
+  font-weight: 650 !important;
+}
+
+/* --- FORCE sliders to pink (BaseWeb + iOS stubbornness) --- */
+
+/* track (unfilled) */
+.stSlider [data-baseweb="slider"] div[role="presentation"] {
+  background-color: #DDE0F3 !important;
+}
+
+/* filled part */
+.stSlider [data-baseweb="slider"] div[role="presentation"] div {
+  background: linear-gradient(90deg, #FF6EC7, #FF4FA3) !important;
+}
+
+/* thumb */
+.stSlider [data-baseweb="slider"] div[role="slider"] {
+  background-color: #FF4FA3 !important;
+  border: 2px solid #FFFFFF !important;
+  box-shadow: 0 0 0 4px rgba(255,79,163,0.18) !important;
+}
+
+/* value text above slider (optional: make it match) */
+.stSlider [data-testid="stTickBarMin"], 
+.stSlider [data-testid="stTickBarMax"],
+.stSlider .stSliderValue {
+  color: #1E2A47 !important;
+}
+
+/* --- Remove metric white boxes --- */
 div[data-testid="metric-container"] {
-    background: transparent !important;
-    border: none !important;
-    box-shadow: none !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
 }
 
-/* Keep ombre gauge */
+/* --- Keep ombre progress --- */
 div[data-testid="stProgress"] > div > div {
-    background: linear-gradient(90deg, #FF9ECF, #8EC5FC, #B388FF) !important;
+  background: linear-gradient(90deg, #FF9ECF, #8EC5FC, #B388FF) !important;
+}
+
+/* Divider */
+hr {
+  border: 0;
+  height: 1px;
+  background: rgba(30, 42, 71, 0.12);
 }
 
 </style>
 """, unsafe_allow_html=True)
+
 
 
 
@@ -191,6 +251,7 @@ with st.expander("About this project"):
     st.write(
         "This tool is for personal insight only. It is not medical advice."
     )
+
 
 
 
