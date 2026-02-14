@@ -88,7 +88,7 @@ st.progress(risk_pct / 100.0, text=f"Risk gauge: {risk_pct}%")
 st.divider()
 
 # --- EXPLAINABILITY SECTION ---
-left, right = st.columns([1.1, 0.9], gap="large")
+left = st.container
 
 with left:
     st.subheader("What’s increading your risk?")
@@ -151,6 +151,7 @@ with st.expander("About this project"):
     st.write(
         "This tool is for personal insight only. It is not medical advice."
     )
+
 
 
 
