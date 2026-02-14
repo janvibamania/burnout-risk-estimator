@@ -5,83 +5,80 @@ from burnout import DailyInputs, burnout_risk_score, clamp
 st.set_page_config(page_title="Burnout Risk Estimator", page_icon="🧠", layout="centered")
 
 # -- STYLING --
-st.markdown(
-    """
+st.markdown("""
 <style>
-  /* Soft pastel background */
-body {
-    background: linear-gradient(180deg, #f3f1f8 0%, #F7F6FB 100%);
+
+/* --- Main lavender background --- */
+.stApp {
+    background: linear-gradient(180deg, #F4F1FF 0%, #ECE8FF 100%);
 }
 
 /* Container spacing */
 .main .block-container {
     padding-top: 5rem !important;
     padding-bottom: 2rem !important;
-    max-width: 1000px;
+    max-width: 1100px;
 }
 
-/* Elegant dark navy headings */
+/* --- Headings (soft bold blue) --- */
 h1, h2, h3 {
-    color: #2b3657 !important;
-    font-weight: 600 !important;
+    color: #3D4ED7 !important;   /* dreamy pastel blue */
+    font-weight: 700 !important;
 }
 
-/* Body text */
-p, label, span {
-    color: #3e4a6b !important;
+/* Paragraph text */
+p, label {
+    color: #444A6D !important;
 }
 
-/* Remove white metric boxes */
-[data-testid="stMetric"] {
+/* --- Remove white metric boxes --- */
+div[data-testid="metric-container"] {
     background: transparent !important;
     border: none !important;
     box-shadow: none !important;
-    padding: 0 !important;
 }
 
-/* Make metric numbers stronger */
-[data-testid="stMetricValue"] {
-    font-size: 2rem !important;
-    font-weight: 600 !important;
-    color: #2b3657 !important;
+/* --- Pink slider bars --- */
+.stSlider > div > div {
+    background: linear-gradient(90deg, #FF6EC7, #FF4FA3) !important;
 }
 
-/* Softer metric labels */
-[data-testid="stMetricLabel"] {
-    color: #6b7aa6 !important;
+/* Slider thumb */
+.stSlider [role="slider"] {
+    background-color: #FF4FA3 !important;
+    border: 2px solid white !important;
 }
 
-/* Remove expander box look */
-.streamlit-expanderHeader {
-    background: rgba(255,255,255,0.2) !important;
-    border-radius: 12px !important;
+/* --- Ombre risk gauge --- */
+div[data-testid="stProgress"] > div > div {
+    background: linear-gradient(90deg, #FF9ECF, #8EC5FC, #B388FF) !important;
 }
 
-/* Remove dataframe box */
-[data-testid="stDataFrame"] {
-    background: transparent !important;
+/* Divider lines softer */
+hr {
+    border: 0;
+    height: 1px;
+    background: #D9D6FF;
+}
+
+/* Buttons pastel */
+button[kind="primary"] {
+    background: linear-gradient(90deg, #8EC5FC, #B388FF) !important;
     border: none !important;
+    color: white !important;
+    border-radius: 8px !important;
 }
 
-    <style>
-      /* Push content below Streamlit Cloud header (mobile + desktop) */
-.main .block-container {
-  padding-top: 4.5rem !important;
-  padding-bottom: 2rem !important;
-  max-width: 1100px;
-}
-
-/* Extra push on small screens */
+/* Mobile tweaks */
 @media (max-width: 600px) {
-  .main .block-container {
-    padding-top: 6rem !important;
-  }
+    h1 {
+        font-size: 1.7rem !important;
+    }
 }
 
-    </style>
-    """,
-    unsafe_allow_html=True
-)
+</style>
+""", unsafe_allow_html=True)
+
 
 # --- HEADER ---
 st.title("🧠 Burnout Risk Estimator")
@@ -227,6 +224,7 @@ with st.expander("About this project"):
     st.write(
         "This tool is for personal insight only. It is not medical advice."
     )
+
 
 
 
