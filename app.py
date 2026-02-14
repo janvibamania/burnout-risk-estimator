@@ -8,57 +8,38 @@ st.set_page_config(page_title="Burnout Risk Estimator", page_icon="🧠", layout
 st.markdown("""
 <style>
 
-/* --- Background --- */
+/* Lavender background */
 .stApp {
     background: linear-gradient(180deg, #F4F1FF 0%, #ECE8FF 100%);
 }
 
-/* --- Elegant navy headings --- */
+/* Navy headings */
 h1, h2, h3 {
-    color: #1F2A44 !important;   /* soft navy */
+    color: #1E2A47 !important;
     font-weight: 700 !important;
 }
 
-/* Subtext */
-p, label {
-    color: #3E4463 !important;
+/* Pink ACTIVE slider track only */
+.stSlider div[data-baseweb="slider"] div[role="presentation"]:first-child {
+    background: #FF4FA3 !important;
 }
 
-/* --- SLIDER FIX (only progress line pink) --- */
-
-/* Grey track */
-.stSlider div[data-baseweb="slider"] > div {
-    background-color: #E3E6F5 !important;
-}
-
-/* Pink filled progress */
-.stSlider div[data-baseweb="slider"] > div > div {
-    background: linear-gradient(90deg, #FF6EC7, #FF4FA3) !important;
-}
-
-/* Thumb circle */
+/* Pink slider thumb */
 .stSlider div[role="slider"] {
     background-color: #FF4FA3 !important;
-    border: 3px solid white !important;
+    border: 2px solid white !important;
 }
 
-/* Remove weird white metric boxes */
+/* Remove metric white boxes */
 div[data-testid="metric-container"] {
     background: transparent !important;
     border: none !important;
     box-shadow: none !important;
 }
 
-/* Ombre gauge keep soft */
+/* Keep ombre gauge */
 div[data-testid="stProgress"] > div > div {
     background: linear-gradient(90deg, #FF9ECF, #8EC5FC, #B388FF) !important;
-}
-
-/* Divider */
-hr {
-    border: 0;
-    height: 1px;
-    background: #D9D6FF;
 }
 
 </style>
@@ -210,6 +191,7 @@ with st.expander("About this project"):
     st.write(
         "This tool is for personal insight only. It is not medical advice."
     )
+
 
 
 
