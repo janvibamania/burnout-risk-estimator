@@ -99,30 +99,6 @@ with left:
     for a in result["actions"]:
         st.write(f"- {a}")
 
-with right:
-    st.subheader("Model breakdown (approx.)")
-    st.caption("This decomposition explains the score using the model’s internal scaling (not medical).")
-
-    # -- REPLICATE BURNOUT --
-    sleep_deficit = clamp((8.0 - d.sleep_hours) / 4.0, 0.0, 1.0)
-    stress_norm   = clamp((d.stress - 1) / 9.0, 0.0, 1.0)
-    work_norm     = clamp((d.work_hours - 7.5) / 6.5, 0.0, 1.0)
-    screen_norm   = clamp((d.screen_hours - 3.0) / 7.0, 0.0, 1.0)
-    exercise_norm = clamp(d.exercise_minutes / 60.0, 0.0, 1.0)
-    social_norm   = clamp(d.social_minutes / 120.0, 0.0, 1.0)
-
-    w_sleep, w_stress, w_work, w_screen = 0.30, 0.30, 0.20, 0.20
-    rows = [
-        ("Sleep deficit",        100 * (w_sleep  * sleep_deficit)),
-        ("Stress",               100 * (w_stress * stress_norm)),
-        ("Work load",            100 * (w_work   * work_norm)),
-        ("Screen exposure",      100 * (w_screen * screen_norm)),
-        ("Exercise (protects)", -100 * (0.25 * exercise_norm)),
-        ("Social time (protects)", -100 * (0.15 * social_norm)),
-    ]
-    df = pd.DataFrame(rows, columns=["Factor", "Impact (pts)"]).sort_values("Impact (pts)", ascending=False)
-    st.dataframe(df, use_container_width=True, hide_index=True)
-
 st.divider()
 
 # --- RISK REDUCE ---
@@ -175,5 +151,6 @@ with st.expander("About this project"):
     st.write(
         "This tool is for personal insight only. It is not medical advice."
     )
+
 
 
