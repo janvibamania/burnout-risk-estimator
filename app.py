@@ -8,7 +8,7 @@ st.set_page_config(page_title="Burnout Risk Estimator", page_icon="🧠", layout
 st.markdown(
     """
 
-    /* ===== Pastel Theme (Janvi-style) ===== */
+    /* ===== Pastel Theme ===== */
 :root{
   --bg: #F7F6FB;          /* very light lavender */
   --card: #FFFFFF;        /* clean white cards */
@@ -235,6 +235,7 @@ with st.expander("About this project"):
     st.write(
         "This tool is for personal insight only. It is not medical advice."
     )
+
 
 
 
