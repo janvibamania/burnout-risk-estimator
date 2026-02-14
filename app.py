@@ -64,7 +64,7 @@ with st.expander("Enter your inputs"):
 
         submitted = st.form_submit_button("Calculate")
         if not submitted:
-    st.stop()
+           st.stop()
 
 
 d = DailyInputs(
@@ -165,6 +165,7 @@ with st.expander("About this project"):
     st.write(
         "This tool is for personal insight only. It is not medical advice."
     )
+
 
 
 
