@@ -8,76 +8,62 @@ st.set_page_config(page_title="Burnout Risk Estimator", page_icon="🧠", layout
 st.markdown("""
 <style>
 
-/* --- Main lavender background --- */
+/* --- Background --- */
 .stApp {
     background: linear-gradient(180deg, #F4F1FF 0%, #ECE8FF 100%);
 }
 
-/* Container spacing */
-.main .block-container {
-    padding-top: 5rem !important;
-    padding-bottom: 2rem !important;
-    max-width: 1100px;
-}
-
-/* --- Headings (soft bold blue) --- */
+/* --- Elegant navy headings --- */
 h1, h2, h3 {
-    color: #3D4ED7 !important;   /* dreamy pastel blue */
+    color: #1F2A44 !important;   /* soft navy */
     font-weight: 700 !important;
 }
 
-/* Paragraph text */
+/* Subtext */
 p, label {
-    color: #444A6D !important;
+    color: #3E4463 !important;
 }
 
-/* --- Remove white metric boxes --- */
+/* --- SLIDER FIX (only progress line pink) --- */
+
+/* Grey track */
+.stSlider div[data-baseweb="slider"] > div {
+    background-color: #E3E6F5 !important;
+}
+
+/* Pink filled progress */
+.stSlider div[data-baseweb="slider"] > div > div {
+    background: linear-gradient(90deg, #FF6EC7, #FF4FA3) !important;
+}
+
+/* Thumb circle */
+.stSlider div[role="slider"] {
+    background-color: #FF4FA3 !important;
+    border: 3px solid white !important;
+}
+
+/* Remove weird white metric boxes */
 div[data-testid="metric-container"] {
     background: transparent !important;
     border: none !important;
     box-shadow: none !important;
 }
 
-/* --- Pink slider bars --- */
-.stSlider > div > div {
-    background: linear-gradient(90deg, #FF6EC7, #FF4FA3) !important;
-}
-
-/* Slider thumb */
-.stSlider [role="slider"] {
-    background-color: #FF4FA3 !important;
-    border: 2px solid white !important;
-}
-
-/* --- Ombre risk gauge --- */
+/* Ombre gauge keep soft */
 div[data-testid="stProgress"] > div > div {
     background: linear-gradient(90deg, #FF9ECF, #8EC5FC, #B388FF) !important;
 }
 
-/* Divider lines softer */
+/* Divider */
 hr {
     border: 0;
     height: 1px;
     background: #D9D6FF;
 }
 
-/* Buttons pastel */
-button[kind="primary"] {
-    background: linear-gradient(90deg, #8EC5FC, #B388FF) !important;
-    border: none !important;
-    color: white !important;
-    border-radius: 8px !important;
-}
-
-/* Mobile tweaks */
-@media (max-width: 600px) {
-    h1 {
-        font-size: 1.7rem !important;
-    }
-}
-
 </style>
 """, unsafe_allow_html=True)
+
 
 
 # --- HEADER ---
@@ -224,6 +210,7 @@ with st.expander("About this project"):
     st.write(
         "This tool is for personal insight only. It is not medical advice."
     )
+
 
 
 
