@@ -8,19 +8,30 @@ st.set_page_config(page_title="Burnout Risk Estimator", page_icon="🧠", layout
 st.markdown(
     """
 <style>
-  /* Page background */
+  /* Soft pastel background */
 body {
-    background-color: #f4f6fb;
+    background: linear-gradient(180deg, #f3f1f8 0%, #eef3fb 100%);
 }
 
-/* Main container spacing */
+/* Container spacing */
 .main .block-container {
     padding-top: 5rem !important;
     padding-bottom: 2rem !important;
     max-width: 1000px;
 }
 
-/* Remove white card look from metrics */
+/* Elegant dark navy headings */
+h1, h2, h3 {
+    color: #2b3657 !important;
+    font-weight: 600 !important;
+}
+
+/* Body text */
+p, label, span {
+    color: #3e4a6b !important;
+}
+
+/* Remove white metric boxes */
 [data-testid="stMetric"] {
     background: transparent !important;
     border: none !important;
@@ -28,45 +39,29 @@ body {
     padding: 0 !important;
 }
 
-/* Remove dataframe white box */
+/* Make metric numbers stronger */
+[data-testid="stMetricValue"] {
+    font-size: 2rem !important;
+    font-weight: 600 !important;
+    color: #2b3657 !important;
+}
+
+/* Softer metric labels */
+[data-testid="stMetricLabel"] {
+    color: #6b7aa6 !important;
+}
+
+/* Remove expander box look */
+.streamlit-expanderHeader {
+    background: rgba(255,255,255,0.2) !important;
+    border-radius: 12px !important;
+}
+
+/* Remove dataframe box */
 [data-testid="stDataFrame"] {
     background: transparent !important;
     border: none !important;
 }
-
-/* Remove expander white box */
-.streamlit-expanderHeader {
-    background: transparent !important;
-    border: none !important;
-}
-
-/* Remove generic container backgrounds */
-[data-testid="stVerticalBlock"] > div {
-    background: transparent !important;
-}
-
-/* Headings – elegant dark blue */
-h1, h2, h3 {
-    color: #1f2a44 !important;
-}
-
-/* Main text */
-p, label, span {
-    color: #2e3a59 !important;
-}
-
-/* Make metric numbers darker + stronger */
-[data-testid="stMetricValue"] {
-    font-size: 2rem !important;
-    font-weight: 600 !important;
-    color: #1f2a44 !important;
-}
-
-/* Subtext softer */
-[data-testid="stMetricLabel"] {
-    color: #5c6b8a !important;
-}
-
 
     <style>
       /* Push content below Streamlit Cloud header (mobile + desktop) */
@@ -141,7 +136,29 @@ st.metric("Primary driver", result["drivers"][0] if result["drivers"] else "—"
 
 
 # -- SIMPLE GAUGE/LESS LIBRARIES --
-st.progress(risk_pct / 100.0, text=f"Risk gauge: {risk_pct}%")
+st.markdown(f"""
+<div style="
+    height: 14px;
+    width: 100%;
+    border-radius: 10px;
+    background: linear-gradient(90deg, #f5c2d7, #8fb8d9, #c5b6e8);
+    opacity: 0.25;
+    margin-bottom: -14px;">
+</div>
+
+<div style="
+    height: 14px;
+    width: {risk_pct}%;
+    border-radius: 10px;
+    background: linear-gradient(90deg, #f5c2d7, #8fb8d9, #c5b6e8);
+">
+</div>
+
+<p style="color:#6b7aa6; margin-top:6px;">
+Risk gauge: {risk_pct}%
+</p>
+""", unsafe_allow_html=True)
+
 
 st.divider()
 
@@ -210,6 +227,7 @@ with st.expander("About this project"):
     st.write(
         "This tool is for personal insight only. It is not medical advice."
     )
+
 
 
 
