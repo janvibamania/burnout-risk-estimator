@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 from burnout import DailyInputs, burnout_risk_score, clamp
 
-st.set_page_config(page_title="Burnout Risk Estimator", page_icon="🧠", layout="wide")
+st.set_page_config(page_title="Burnout Risk Estimator", page_icon="🧠", layout="centered")
 
 # -- STYLING --
 st.markdown(
@@ -31,6 +31,13 @@ st.markdown(
       h1, h2, h3 {
           font-weight: 600;
       }
+
+      @media (max-width: 600px) {
+  .block-container { padding-top: 1rem; padding-bottom: 1.25rem; }
+  h1 { font-size: 1.6rem !important; }
+  h2, h3 { font-size: 1.2rem !important; }
+  [data-testid="stMetricValue"] { font-size: 1.5rem !important; }
+}
     </style>
     """,
     unsafe_allow_html=True
@@ -44,15 +51,21 @@ st.caption("Behavioural risk modelling prototype (non-clinical).")
 st.divider()
 
 # --- INPUTS (sidebar) ---
-with st.sidebar:
-    st.header("Daily inputs")
-    sleep_hours = st.slider("Sleep (hours)", 0.0, 12.0, 7.0, 0.25)
-    stress = st.slider("Stress level (1–10)", 1, 10, 6, 1)
-    st.caption("1 = very calm, 10 = extremely stressed")
-    work_hours = st.slider("Work/Study (hours)", 0.0, 16.0, 8.0, 0.25)
-    screen_hours = st.slider("Screen time (hours)", 0.0, 16.0, 6.0, 0.25)
-    exercise_minutes = st.slider("Exercise (minutes)", 0, 180, 10, 5)
-    social_minutes = st.slider("Social time (minutes)", 0, 600, 30, 5)
+with st.expander("Enter your inputs"):
+    with st.form("inputs_form"):
+        sleep_hours = st.slider("Sleep (hours)", 0.0, 12.0, 7.0, 0.25)
+        stress = st.slider("Stress level (1–10)", 1, 10, 6, 1)
+        st.caption("1 = very calm, 10 = extremely stressed")
+
+        work_hours = st.slider("Work/Study (hours)", 0.0, 16.0, 8.0, 0.25)
+        screen_hours = st.slider("Screen time (hours)", 0.0, 16.0, 6.0, 0.25)
+        exercise_minutes = st.slider("Exercise (minutes)", 0, 180, 10, 5)
+        social_minutes = st.slider("Social time (minutes)", 0, 600, 30, 5)
+
+        submitted = st.form_submit_button("Calculate")
+        if not submitted:
+    st.stop()
+
 
 d = DailyInputs(
     sleep_hours=sleep_hours,
@@ -76,11 +89,11 @@ def tier_label(pct: int) -> str:
 
 tier = tier_label(risk_pct)
 
-# --- KPIS ---
-k1, k2, k3 = st.columns([1, 1, 1])
-k1.metric("Burnout risk", f"{risk_pct}%")
-k2.metric("State", tier)
-k3.metric("Primary driver", result["drivers"][0] if result["drivers"] else "—")
+# --- MOBILE METRICS ---
+st.metric("Burnout risk", f"{risk_pct}%")
+st.metric("State", tier)
+st.metric("Primary driver", result["drivers"][0] if result["drivers"] else "—")
+
 
 # -- SIMPLE GAUGE/LESS LIBRARIES --
 st.progress(risk_pct / 100.0, text=f"Risk gauge: {risk_pct}%")
@@ -152,6 +165,7 @@ with st.expander("About this project"):
     st.write(
         "This tool is for personal insight only. It is not medical advice."
     )
+
 
 
 
