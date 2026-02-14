@@ -8,36 +8,20 @@ st.set_page_config(page_title="Burnout Risk Estimator", page_icon="🧠", layout
 st.markdown(
     """
     <style>
-      html, body, [class*="css"]  {
-          font-family: Aptos, "Segoe UI", Arial, sans-serif;
-      }
-
-      .block-container {
-          padding-top: 4rem;
-          padding-bottom: 2rem;
-          max-width: 1100px;
-      }
-
-      .tiny {
-          opacity: 0.75;
-          font-size: 0.9rem;
-      }
-
-      [data-testid="stMetricValue"] {
-          font-size: 1.9rem;
-          font-weight: 600;
-      }
-
-      h1, h2, h3 {
-          font-weight: 600;
-      }
-
-      @media (max-width: 600px) {
-  .block-container { padding-top: 1rem; padding-bottom: 1.25rem; }
-  h1 { font-size: 1.6rem !important; }
-  h2, h3 { font-size: 1.2rem !important; }
-  [data-testid="stMetricValue"] { font-size: 1.5rem !important; }
+      /* Push content below Streamlit Cloud header (mobile + desktop) */
+.main .block-container {
+  padding-top: 4.5rem !important;
+  padding-bottom: 2rem !important;
+  max-width: 1100px;
 }
+
+/* Extra push on small screens */
+@media (max-width: 600px) {
+  .main .block-container {
+    padding-top: 6rem !important;
+  }
+}
+
     </style>
     """,
     unsafe_allow_html=True
@@ -165,6 +149,7 @@ with st.expander("About this project"):
     st.write(
         "This tool is for personal insight only. It is not medical advice."
     )
+
 
 
 
