@@ -13,7 +13,7 @@ st.markdown(
       }
 
       .block-container {
-          padding-top: 2rem;
+          padding-top: 4rem;
           padding-bottom: 2rem;
           max-width: 1100px;
       }
@@ -165,6 +165,7 @@ with st.expander("About this project"):
     st.write(
         "This tool is for personal insight only. It is not medical advice."
     )
+
 
 
 
