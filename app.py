@@ -7,6 +7,92 @@ st.set_page_config(page_title="Burnout Risk Estimator", page_icon="🧠", layout
 # -- STYLING --
 st.markdown(
     """
+
+    /* ===== Pastel Theme (Janvi-style) ===== */
+:root{
+  --bg: #F7F6FB;          /* very light lavender */
+  --card: #FFFFFF;        /* clean white cards */
+  --text: #1F2330;        /* soft charcoal */
+  --muted: #6B7280;       /* grey text */
+  --border: #E9E7F3;      /* pastel border */
+  --accent: #B8A7FF;      /* lavender accent */
+  --accent2: #9AD7FF;     /* baby blue */
+  --accent3: #FFC7D9;     /* soft pink */
+}
+
+/* app background */
+.stApp {
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* main container spacing (keeps title below Streamlit header) */
+.main .block-container{
+  padding-top: 5.5rem !important;
+  padding-bottom: 2rem !important;
+  max-width: 1100px;
+}
+
+/* typography */
+html, body, [class*="css"]{
+  font-family: Aptos, "Segoe UI", system-ui, -apple-system, Arial, sans-serif;
+}
+
+/* headings */
+h1, h2, h3 {
+  letter-spacing: -0.02em;
+}
+
+/* soften paragraphs/captions */
+p, .stCaption { color: var(--muted) !important; }
+
+/* cards: expanders, containers, widgets */
+div[data-testid="stExpander"],
+div[data-testid="stMetric"],
+div[data-testid="stText"],
+div[data-testid="stDataFrame"],
+div[data-testid="stForm"]{
+  background: var(--card) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 16px !important;
+}
+
+/* expander header */
+div[data-testid="stExpander"] summary{
+  font-weight: 600;
+  color: var(--text) !important;
+}
+
+/* buttons */
+.stButton > button{
+  background: linear-gradient(90deg, var(--accent), var(--accent2)) !important;
+  color: #0b1020 !important;
+  border: 0 !important;
+  border-radius: 14px !important;
+  padding: 0.7rem 1rem !important;
+  font-weight: 700 !important;
+}
+
+/* progress bar */
+div[data-testid="stProgress"] > div > div{
+  background: linear-gradient(90deg, var(--accent3), var(--accent2), var(--accent)) !important;
+}
+
+/* metrics */
+[data-testid="stMetricLabel"]{ color: var(--muted) !important; }
+[data-testid="stMetricValue"]{ color: var(--text) !important; }
+
+/* slider accent (limited support; works in some browsers) */
+input[type="range"]{
+  accent-color: #B8A7FF;
+}
+
+/* mobile sizing */
+@media (max-width: 600px){
+  h1{ font-size: 1.7rem !important; line-height: 1.15 !important; }
+  .main .block-container{ padding-top: 5.8rem !important; }
+}
+
     <style>
       /* Push content below Streamlit Cloud header (mobile + desktop) */
 .main .block-container {
@@ -149,6 +235,7 @@ with st.expander("About this project"):
     st.write(
         "This tool is for personal insight only. It is not medical advice."
     )
+
 
 
 
