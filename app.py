@@ -90,16 +90,17 @@ st.divider()
 # --- EXPLAINABILITY SECTION ---
 left = st.container
 
-with left:
-    st.subheader("What’s increading your risk?")
-    st.write("**Top drivers:**", ", ".join(result["drivers"]) if result["drivers"] else "—")
-    st.write("**Protective factors:**", ", ".join(result["protectors"]) if result["protectors"] else "—")
+st.subheader("What is increasing your risk?")
 
-    st.subheader("What you can improve today")
-    for a in result["actions"]:
-        st.write(f"- {a}")
+st.write("**Main drivers:**", ", ".join(result["drivers"]) if result["drivers"] else "—")
+st.write("**Protective factors:**", ", ".join(result["protectors"]) if result["protectors"] else "—")
 
+st.subheader("What you can improve today")
+
+for a in result["actions"]:
+    st.write(f"- {a}")
 st.divider()
+
 
 # --- RISK REDUCE ---
 st.subheader("What change reduces risk fastest?")
@@ -151,6 +152,7 @@ with st.expander("About this project"):
     st.write(
         "This tool is for personal insight only. It is not medical advice."
     )
+
 
 
 
